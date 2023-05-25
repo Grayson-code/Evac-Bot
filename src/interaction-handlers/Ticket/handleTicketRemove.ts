@@ -22,7 +22,7 @@ export class ButtonHandler extends InteractionHandler {
 
   public async run(interaction: ButtonInteraction) {
     if (!interaction.inCachedGuild()) return;
-    if (!interaction.member?.permissions.has(PermissionsBitField.Flags.Administrator)) return;
+    if (!interaction.member?.permissions.has(PermissionsBitField.Flags.Administrator)) return interaction.reply({ephemeral: true, content: "You dont have admin!"})
     await interaction.reply("Deleting Ticket.");
     await interaction.channel?.delete();
   }

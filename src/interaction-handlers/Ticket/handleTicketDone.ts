@@ -23,7 +23,7 @@ export class ButtonHandler extends InteractionHandler {
   public async run(interaction: ButtonInteraction) {
     if (!interaction.inCachedGuild()) return
     if (!interaction.member?.permissions.has(PermissionsBitField.Flags.SendMessages)) return;
-    await (interaction.channel! as TextChannel).permissionOverwrites.edit(interaction.guild.roles.everyone, {SendMessages:false, ViewChannel:false});
+    await (interaction.channel! as TextChannel).permissionOverwrites.edit(interaction.user , {SendMessages:false, ViewChannel:false});
     await (interaction.channel as TextChannel).edit({name: `Archived-${Math.round(Math.random() * 100)}`});
   }
 }

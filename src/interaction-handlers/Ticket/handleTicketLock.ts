@@ -22,7 +22,7 @@ export class ButtonHandler extends InteractionHandler {
 
   public async run(interaction: ButtonInteraction) {
     if (!interaction.inCachedGuild()) return
-    if (!interaction.member?.permissions.has(PermissionsBitField.Flags.SendMessages)) return;
+    if (!interaction.member?.permissions.has(PermissionsBitField.Flags.BanMembers)) return interaction.reply({ephemeral: true, content: "You dont have the required permissions!"})
     await (interaction.channel! as TextChannel).permissionOverwrites.edit(interaction.guild.roles.everyone, { SendMessages: false, ViewChannel: false });
   }
 }

@@ -9,7 +9,8 @@ import { ticketActionRow } from '../../../lib/constants';
 export class ButtonHandler extends InteractionHandler {
 	public async run(interaction: ButtonInteraction) {
 		await interaction.reply({ ephemeral: true, content: "Ticket created successfully ✅" });
-		const channel = await interaction.guild?.channels.create({ name: `Support-${interaction.user.username}`, parent: "1105725394927226900", type: ChannelType.GuildText });
+		const channel = await interaction.guild?.channels.create({ name: `Support-${interaction.user.username}`, parent: "1110921491027087470", type: ChannelType.GuildText });
+		await channel?.permissionOverwrites.edit(interaction.user, { ViewChannel: true, SendMessages: true, ReadMessageHistory: true })
 		await channel?.send({
 			embeds: [new EmbedBuilder()
 				.setTitle(`${interaction.user.tag}s Support Ticket`)

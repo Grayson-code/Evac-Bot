@@ -9,11 +9,14 @@ import { ticketActionRow } from '../../../lib/constants';
 export class ButtonHandler extends InteractionHandler {
 	public async run(interaction: ButtonInteraction) {
 		await interaction.reply({ ephemeral: true, content: "Proof Ticket created successfully ✅" });
-		const channel = await interaction.guild?.channels.create({ name: `Proof-${interaction.user.username}`, parent: "1105037416768741456", type: ChannelType.GuildText });
+		const channel = await interaction.guild?.channels.create({ name: `Proof-${interaction.user.username}`, parent: "1110921513080733696", type: ChannelType.GuildText });
+		await channel?.permissionOverwrites.edit(interaction.user, { ViewChannel: true, SendMessages: true, ReadMessageHistory: true })
 		await channel?.send({
 			embeds: [new EmbedBuilder()
 				.setTitle(`${interaction.user.tag}s Proof Ticket`)
-				.setDescription(`Hello ${interaction.user.tag}, please send the proof.`)
+				.setDescription(`Hello ${interaction.user.tag}\n
+				Please provide your proof of completion below. Along with whos sponsor it is and what has been completed in this format ex.\n
+				Level 5 operations: ✅\nLevel 10 operations: ❌️\n2nd ship: ✅\npayment type:\nname:\nproof:`)
 				.setColor('DarkRed')
 				.setTimestamp()], components: [ticketActionRow]
 		});
