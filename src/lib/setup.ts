@@ -16,7 +16,7 @@ import { srcDir } from './constants';
 ApplicationCommandRegistries.setDefaultBehaviorWhenNotIdentical(RegisterBehavior.BulkOverwrite);
 
 // Read env var
-setup({ path: join(srcDir, '.env') });
+setup({ path: join(srcDir, '../.env') });
 
 // Set default inspection depth
 inspect.defaultOptions.depth = 1;
