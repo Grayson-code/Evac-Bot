@@ -9,7 +9,7 @@ import { ticketActionRow } from '../../../lib/constants';
 export class ButtonHandler extends InteractionHandler {
 	public async run(interaction: ButtonInteraction) {
 		await interaction.reply({ ephemeral: true, content: "Proof Ticket created successfully ✅" });
-		const channel = await interaction.guild?.channels.create({ name: `Proof-${interaction.user.username}`, parent: "1110921513080733696", type: ChannelType.GuildText });
+		const channel = await interaction.guild?.channels.create({ name: `Proof-${interaction.user.username}-${interaction.user.id}`, parent: "1110921513080733696", type: ChannelType.GuildText });
 		await channel?.permissionOverwrites.edit(interaction.user, { ViewChannel: true, SendMessages: true, ReadMessageHistory: true })
 		await channel?.send({
 			embeds: [new EmbedBuilder()

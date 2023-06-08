@@ -3,6 +3,7 @@
 // This software is released under the MIT License.
 // https://opensource.org/licenses/MIT
 
+import { sendTranscript } from '../../lib/utils';
 import { InteractionHandler, InteractionHandlerTypes,type PieceContext } from '@sapphire/framework';
 import { PermissionsBitField, type ButtonInteraction } from 'discord.js';
 
@@ -24,6 +25,7 @@ export class ButtonHandler extends InteractionHandler {
     if (!interaction.inCachedGuild()) return;
     if (!interaction.member?.permissions.has(PermissionsBitField.Flags.Administrator)) return interaction.reply({ephemeral: true, content: "You dont have admin!"})
     await interaction.reply("Deleting Ticket.");
+    await sendTranscript(interaction)
     await interaction.channel?.delete();
   }
 }

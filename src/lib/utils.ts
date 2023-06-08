@@ -2,7 +2,7 @@ import type { ChatInputCommandSuccessPayload, Command, ContextMenuCommandSuccess
 import { container } from '@sapphire/framework';
 import { send } from '@sapphire/plugin-editable-commands';
 import { cyan } from 'colorette';
-import { EmbedBuilder, type APIUser, type Guild, type Message, type User } from 'discord.js';
+import { EmbedBuilder, type APIUser, type Guild, type Message, type User, ButtonInteraction, TextChannel } from 'discord.js';
 import { RandomLoadingMessage } from './constants';
 
 /**
@@ -60,4 +60,16 @@ function getAuthorInfo(author: User | APIUser) {
 function getGuildInfo(guild: Guild | null) {
 	if (guild === null) return 'Direct Messages';
 	return `${guild.name}[${cyan(guild.id)}]`;
+}
+
+export async function sendTranscript(interaction: ButtonInteraction) {
+	let userId = (interaction.channel as TextChannel).name.split("-")
+	let user = await interaction.client.users.fetch(userId[2])
+	let embed = new EmbedBuilder()
+		.setAuthor({ name: user.username, iconURL: user.displayAvatarURL() })
+		.setFields({ name: "Ticket Owner", value: `<@${user.id}>`, inline: true	 }, { name: "Panel Name", value: userId[0], inline: true})
+		.setColor("Red")
+	const channel = (await interaction.client.channels.fetch("1110932425057509377") as TextChannel)
+	channel.send({embeds: [embed]})
+
 }
