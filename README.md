@@ -1,6 +1,5 @@
-# TypeScript Sapphire Bot example with SWC
 
-This is a basic setup of a Discord bot using the [sapphire framework][sapphire] written in TypeScript
+
 
 ## How to use it?
 
@@ -20,7 +19,7 @@ npm run dev
 
 ### Production
 
-You can also run the bot with `npm dev`, this will first build your code and then run `node ./dist/index.js`. But this is not the recommended way to run a bot in production.
+You can also run the bot with `npm run dev`, this will first build your code and then run `node ./dist/index.js`. But this is not the recommended way to run a bot in production.
 
 ## License
 
